@@ -1,65 +1,83 @@
-package Java_for_dummies;
-
 import java.util.Random;
 import java.util.Scanner;
 
-public class CasinoGame {
+public class Catsino {
 
     public static void main(String[] args) {
 
-        int playerMoney = 100;
+        Scanner input = new Scanner(System.in);
 
-        Scanner keyboard = new Scanner(System.in);
+        int money = 100;
+        int bet;
+        int guess;
 
-        System.out.println("welcome to the Casino game");
-        System.out.println();
-        System.out.println("The Game is Simple set a amount of money");
-        System.out.println("Then you pick a number between 1 and 10 and if your Answer ");
-        System.out.println("is Correct you get your money + 50% you set ");
-        System.out.println("Your Current Balance is: " + playerMoney + "$");
 
-        System.out.print("enter how much money you would like to bet: ");
-        int moneyBet = keyboard.nextInt();
+        while (true){
 
-        playerMoney -= moneyBet;
+            // Introduction
+            System.out.println("Welcome to Catsino!");
+            System.out.println("[1] Start Playing");
+            System.out.println("[2] Tutorial");
+            System.out.println("[3] Exit");
+            System.out.print("What is your choice: ");
 
-        if (playerMoney < 0) {
-            System.out.println("You have not enough money");
-            System.out.println("Pleas Try Again: ");
-            moneyBet = keyboard.nextInt();
 
-            moneyBet = 0;
-            playerMoney = 100;
+            switch (input.nextInt()){
+                case 1:
+                    // Game
+                    int randomNumber = new Random().nextInt(3) + 1;
+                    System.out.println("");
+                    System.out.println("This is your balanc: " + money + "$");
+                    System.out.print("Please enter your bet: ");
+                    bet = input.nextInt();
 
-        }
-        else  {
-            System.out.println("your bet is: " + moneyBet + "$");
-            System.out.println("Your Balance is: " + playerMoney + "$");
+                    if(bet > money){
+                        System.out.println("you dont have enough money!");
+                        System.out.println("");
+                        break;
+                    }
+                    else{
+                        money -= bet;
+                        System.out.println("you cane choice a number between 1 and 3");
+                        System.out.print("Please enter your guess: ");
+                        guess = input.nextInt();
 
-            System.out.print("Pleas Enter a Number between 1 and 10: ");
-            int imputNumber = keyboard.nextInt();
-            int randomNumber = new Random().nextInt(10) + 1;
+                        if(guess == randomNumber){
+                            System.out.println("Your guess is correct!");
+                            bet += 0.5* bet;
+                            money += bet;
+                            bet -= bet;
+                        }
+                        else{
+                            System.out.println("Your guess is incorrect!");
+                            bet -= bet;
+                            System.out.println("");
+                        }
+                    }
+                    break;
 
-            if (randomNumber == imputNumber) {
-                System.out.println("yor answer is Correct you get your money + 50% you set ");
-                moneyBet += 50 %moneyBet;
-                playerMoney += moneyBet;
-                moneyBet = 0;
+                case 2:
+                    // Tutorial
+                    System.out.println("");
+                    System.out.println("This is a simple Casino Game!");
+                    System.out.println("Don't worry, no real money is needed");
+                    System.out.println("The game is very simple!");
+                    System.out.println("You start with 100$");
+                    System.out.println("Your goal is to earn as much as you can");
+                    System.out.println("if you reach 0$ the run is Over");
+                    System.out.println("But don't worry, you can just start a new game and have $100 again");
+                    System.out.println("");
+                    System.out.println("if you finished with the tutorial press a key and then hit enter");
+                    System.out.println("to return to the main menu");
+                    System.out.println("");
+                    input.next();
+                    break;
 
-                System.out.println("your Balance is: " + playerMoney + "$");
-                System.out.println("Your bet is: " + moneyBet + "$");
+                case 3:
+                    System.out.println("");
+                    System.out.println("Thanks for playing!");
+                    System.exit(0);
             }
-            else {
-                System.out.println("You Lose. you Guess the Wrong Number");
-                System.out.println("The Number was: " + randomNumber );
-                moneyBet = 0;
-
-                System.out.println("your Balance is: " + playerMoney + "$");
-                System.out.println("Your bet is: " + moneyBet + "$");
-            }
-
-            keyboard.close();
         }
-
     }
 }
