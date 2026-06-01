@@ -34,8 +34,10 @@ public class Catsino {
             System.out.println(ANSI_PURPLE + "Welcome to Catsino!" + ANSI_RESET);
             System.out.println(ANSI_GREEN + "Your Balance: " + money + "$" + ANSI_RESET);
             System.out.println("[1] Start Playing");
-            System.out.println("[2] Tutorial");
-            System.out.println("[3] Exit");
+            System.out.println("[2] Save");
+            System.out.println("[3] Load");
+            System.out.println("[4] Tutorial");
+            System.out.println("[5] Exit");
             System.out.print("What is your choice: ");
 
 
@@ -89,6 +91,20 @@ public class Catsino {
                     break;
 
                 case 2:
+                    // Save System
+                    saveSystem.save(money);
+                    System.out.println(ANSI_GREEN + "Game Saved" + ANSI_CLEAR);
+                    System.out.print(ANSI_CLEAR);
+
+                  break;
+
+
+                case 3:
+                  money = saveSystem.load();
+                  System.out.print(ANSI_CLEAR);
+                  break;
+                   
+                case 4:
                     // Tutorial
                     System.out.println("");
                     System.out.println("This is a simple Casino Game!");
@@ -103,12 +119,17 @@ public class Catsino {
                     System.out.println("to return to the main menu");
                     System.out.println("");
                     input.next();
+                    System.out.print(ANSI_CLEAR);
                     break;
 
-                case 3:
-                    System.out.print(ANSI_CLEAR);
-                    System.out.println(ANSI_BLUE + "Thanks for playing!" + ANSI_RESET);
-                    System.exit(0);
+                case 5:
+                  System.out.print(ANSI_CLEAR);
+                  System.out.println(ANSI_BLUE + "Thanks for playing!" + ANSI_RESET);
+                  System.exit(0);
+
+                break;
+
+
             }
         }
     }
