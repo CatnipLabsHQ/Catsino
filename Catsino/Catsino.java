@@ -21,6 +21,12 @@ public class Catsino {
 
     public static void main(String[] args) {
 
+      try {
+        startup startup = new startup();
+        startup.startup();
+      } catch (InterruptedException e) {}
+
+
         // clear's Terminal Screen
         System.out.print(ANSI_CLEAR);
 
