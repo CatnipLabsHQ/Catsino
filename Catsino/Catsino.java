@@ -19,11 +19,11 @@ public class Catsino {
   public static Scanner input = new Scanner(System.in);
   
     
-  public static void main(String[] args) {
+  public static void main(String[] args) { 
 
     try {
-      startup startup = new startup();
-      startup.startup();
+      Startup startup = new Startup();
+      startup.startupMain();
     } catch (InterruptedException e) {}
 
 
@@ -31,7 +31,6 @@ public class Catsino {
     System.out.print(ANSI_CLEAR);
 
     while (true) {
-
       // Introduction
       System.out.println(ANSI_PURPLE + "Welcome to Catsino!" + ANSI_RESET);
       System.out.println(ANSI_GREEN + "Your Balance: " + money + "$" + ANSI_RESET);
@@ -40,65 +39,62 @@ public class Catsino {
       System.out.println("[3] Load");
       System.out.println("[4] Tutorial");
       System.out.println("[5] Exit");
-      System.out.print("What is your choice: ");
+      System.out.print("What is your choice: "); 
+ 
+      String userInput = input.nextLine(); 
 
-      switch (input.nextInt()) {
-
-        case 1:
-          numberGuess.numberGuess();
-        break;
-
-        case 2:
-          // Save System
-          System.out.print(ANSI_CLEAR);
-          System.out.print("Save Game? (y/n) \n>");
-
-          input.nextLine();
-          String userInput = input.nextLine().trim().toLowerCase();
-
-          if (userInput.equals("y")) {
-            saveSystem.save(money);
-            System.out.print(ANSI_CLEAR);
-            System.out.println(ANSI_GREEN + "Game Save" + ANSI_RESET);
-          }
-          else {
-            System.out.print(ANSI_CLEAR);
-            System.out.println(ANSI_RED + "Save Canceled" + ANSI_RESET);
-          }
-
-        break;
-
-        case 3:
-          money = saveSystem.load();
-          System.out.print(ANSI_CLEAR);
-        break;
-
-        case 4:
-          // Tutorial
-          System.out.println("");
-          System.out.println("This is a simple Casino Game!");
-          System.out.println("Don't worry, no real money is needed");
-          System.out.println("The game is very simple!");
-          System.out.println("You start with 100$");
-          System.out.println("Your goal is to earn as much as you can");
-          System.out.println("if you reach 0$ the run is Over");
-          System.out.println("But don't worry, you can just start a new game and have $100 again");
-          System.out.println("");
-          System.out.println("if you finished with the tutorial press a key and then hit enter");
-          System.out.println("to return to the main menu");
-          System.out.println("");
-          input.next();
-          System.out.print(ANSI_CLEAR);
-        break;
-
-        case 5:
-          System.out.print(ANSI_CLEAR);
-          System.out.println(ANSI_BLUE + "Thanks for playing!" + ANSI_RESET);
-          System.exit(0);
-
-        break;
-
+      if (userInput.equals("1")) {
+        NumberGuess.numberGuess();
+        input.nextLine();
       }
+
+      else if (userInput.equals("2")) {
+        // Save System
+        System.out.print(ANSI_CLEAR);
+        System.out.print("Save Game? (y/n) \n>");
+
+        userInput = input.nextLine().trim().toLowerCase();
+       
+        if (userInput.equals("y")) {
+          SaveSystem.save(money);
+          System.out.print(ANSI_CLEAR);
+          System.out.println(ANSI_GREEN + "Game Save" + ANSI_RESET);
+        }
+        else {
+          System.out.print(ANSI_CLEAR);
+          System.out.println(ANSI_RED + "Save Canceled" + ANSI_RESET);
+        }
+      }
+
+      else if (userInput.equals("3")) {
+        money = SaveSystem.load();
+        System.out.print(ANSI_CLEAR);
+      }
+
+      else if (userInput.equals("4")) {
+        // Tutorial
+        System.out.println("");
+        System.out.println("This is a simple Casino Game!");
+        System.out.println("Don't worry, no real money is needed");
+        System.out.println("The game is very simple!");
+        System.out.println("You start with 100$");
+        System.out.println("Your goal is to earn as much as you can");
+        System.out.println("if you reach 0$ the run is Over");
+        System.out.println("But don't worry, you can just start a new game and have $100 again");
+        System.out.println("");
+        System.out.println("if you finished with the tutorial press a key and then hit enter");
+        System.out.println("to return to the main menu");
+        System.out.println("");
+        input.next();
+        System.out.print(ANSI_CLEAR);
+      }
+
+      else if (userInput.equals("5")) {
+        System.out.print(ANSI_CLEAR);
+        System.out.println(ANSI_BLUE + "Thanks for playing!" + ANSI_RESET);
+        System.exit(0);
+
+      }      
     }
   }
 }
