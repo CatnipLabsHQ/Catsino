@@ -1,0 +1,9 @@
+target/
+*.class
+SaveData.txt
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
