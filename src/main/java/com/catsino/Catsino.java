@@ -3,7 +3,6 @@ package com.catsino;
 import java.util.Scanner;
 
 import static com.catsino.tools.GameData.Ansi.*;
-import static com.catsino.tools.GameData.addMoney;
 import static com.catsino.tools.GameData.money;
 
 public class Catsino {
@@ -109,13 +108,7 @@ public class Catsino {
       }
       else if (userInput.equals("catmode")) {
         // Cheat mode
-        System.out.print(ANSI_CLEAR);
-        
-        System.out.print(ANSI_YELLOW + "you enabled CatMode \nHow much money you want to add? \n>" + ANSI_RESET);
-        double cheatMoney = input.nextDouble();
-        addMoney(cheatMoney);
-        System.out.print(ANSI_CLEAR);
-
+        CatMode.catMode();
       }
 
       else {
