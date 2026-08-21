@@ -101,7 +101,7 @@ public class Catsino {
         System.out.print(ANSI_CLEAR);
       }
 
-      else if (userInput.equals("5")) {
+      else if (userInput.equals("5") || userInput.equals("exit")) {
         System.out.print(ANSI_CLEAR);
         System.out.println(ANSI_BLUE + "Thanks for playing!" + ANSI_RESET);
         System.exit(0);

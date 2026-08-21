@@ -32,6 +32,7 @@ public class Startup {
     };
 
     System.out.println(ANSI_CLEAR);
+    System.out.print("\033[5 q");
 
     try {
       startupsound();
