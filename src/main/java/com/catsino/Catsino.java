@@ -34,26 +34,7 @@ public class Catsino {
 
       if (userInput.equals("1")) {
         System.out.print(ANSI_CLEAR);
-        System.out.println(ANSI_PURPLE + "Selecte a Game" + ANSI_RESET);
-        System.out.println("[1] NummberGuessing");
-        System.out.println("[2] SlotMaschine");
-        System.out.print("What is your choice: ");
-
-        userInput = input.nextLine();
-
-        if (userInput.equals("1")) {
-          System.out.print(ANSI_CLEAR);
-          NumberGuess.numberGuess();
-          input.nextLine();
-        } 
-        else if (userInput.equals("2")) {
-          System.out.print(ANSI_CLEAR);
-          SlotMaschine.slotMaschine();
-        }
-        else {
-          System.out.print(ANSI_CLEAR);
-          System.out.println(ANSI_RED + "Invalid input" + ANSI_RESET);
-        } 
+        NumberGuess.numberGuess();
       }
 
       else if (userInput.equals("2")) {
