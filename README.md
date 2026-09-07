@@ -7,11 +7,6 @@ This project is for learning purposes and still needs improvements like:
 - Proper win calculation
 - Better error handling
 
-Important
-
-I use AI for updating changelogs. Because I don't know how to do this.
-
-Because I'm very new 
 
 Note:
 Sound are from pixabey
