@@ -3,14 +3,14 @@ package com.catsino;
 import java.util.Scanner;
 
 import static com.catsino.tools.GameData.Ansi.*;
-import static com.catsino.tools.GameData.money;
+import com.catsino.tools.Player;
 
 public class Catsino {
 
   // Importan Stuff
   public static Scanner input = new Scanner(System.in);
 
-  public static void menu() {
+  public static void menu(Player player) {
 
     try {
       Startup.startupMain();
@@ -22,7 +22,7 @@ public class Catsino {
     while (true) {
       // Introduction
       System.out.println(ANSI_PURPLE + "Welcome to Catsino!" + ANSI_RESET);
-      System.out.println(ANSI_GREEN + "Your Balance: " + money + "$" + ANSI_RESET);
+      System.out.println(ANSI_GREEN + "Your Balance: " + player.getBalance() + "$" + ANSI_RESET);
       System.out.println("[1] Start Playing");
       System.out.println("[2] Save");
       System.out.println("[3] Load");
@@ -34,7 +34,7 @@ public class Catsino {
 
       if (userInput.equals("1")) {
         System.out.print(ANSI_CLEAR);
-        NumberGuess.numberGuess();
+        NumberGuess.numberGuess(player);
       }
 
       else if (userInput.equals("2")) {
@@ -45,7 +45,7 @@ public class Catsino {
         userInput = input.nextLine().trim().toLowerCase();
 
         if (userInput.equals("y")) {
-          SaveSystem.save(money);
+          SaveSystem.save(player.getBalance());
           System.out.print(ANSI_CLEAR);
           System.out.println(ANSI_GREEN + "Game Save" + ANSI_RESET);
         } 
@@ -63,7 +63,10 @@ public class Catsino {
         userInput = input.next().trim().toLowerCase();
 
         if (userInput.equals("y")) {
-          money = SaveSystem.load();
+          double loaded = SaveSystem.load();
+          if (!player.restore(loaded)) {
+            System.out.println(ANSI_RED + "Save-File Error" + ANSI_RESET);
+          }
           System.out.print(ANSI_CLEAR);
           System.out.println(ANSI_GREEN + "Load Game" + ANSI_RESET);
         }
@@ -89,7 +92,7 @@ public class Catsino {
       }
       else if (userInput.equals("catmode")) {
         // Cheat mode
-        CatMode.catMode();
+        CatMode.catMode(player);
       }
 
       else {

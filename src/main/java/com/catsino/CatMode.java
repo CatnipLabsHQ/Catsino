@@ -2,15 +2,14 @@ package com.catsino;
 
 import java.util.Scanner;
 
-import static com.catsino.tools.GameData.addMoney;
-import static com.catsino.tools.GameData.money;
-import static com.catsino.tools.GameData.subtractmoney;
+
 import static com.catsino.tools.GameData.Ansi.*;
+import com.catsino.tools.Player;
 
 public class CatMode {
 
   // Cheat Mode
-  public static void catMode() {
+  public static void catMode(Player player) {
 
     Scanner scanner = new Scanner(System.in);
 
@@ -32,21 +31,25 @@ public class CatMode {
       if (input.startsWith("addmoney ")) {
         String[] parts = input.split(" ");
         double amount = Double.parseDouble(parts[1]);
-
+        player.deposit(amount);
         System.out.println(ANSI_GREEN + "+ " + amount + " $" + ANSI_RESET);
-        addMoney(amount);
+        
       }
 
       else if (input.startsWith("submoney ")) {
         String[] parts = input.split(" ");
         double amount = Double.parseDouble(parts[1]);
 
-        System.out.println(ANSI_GREEN + "- " + amount + " $" + ANSI_RESET);
-        subtractmoney(amount);
+        if(!player.withdraw(amount)) {
+          System.out.println("Not enough Money"); 
+        }
+        else {
+          System.out.println(ANSI_GREEN + "- " + amount + " $" + ANSI_RESET);
+        }
       }
 
       else if (input.equals("balance")) {
-        System.out.println(ANSI_GREEN + money + " $" + ANSI_RESET);
+        System.out.println(ANSI_GREEN + player.getBalance() + " $" + ANSI_RESET);
       }
 
       else if (input.equals("clear")) {
