@@ -9,14 +9,12 @@ import com.catsino.tools.Player;
 public class CatMode {
 
   // Cheat Mode
-  public static void catMode(Player player) {
-
-    Scanner scanner = new Scanner(System.in);
+  public static void catMode(Player player, Scanner scanner) {
 
     System.out.print(ANSI_CLEAR);
     System.out.println(ANSI_YELLOW + "You Enabled CatMode" + ANSI_RESET);
 
-    while (true) {
+    while(true) {
 
       System.out.print("> ");
       var input = scanner.nextLine();

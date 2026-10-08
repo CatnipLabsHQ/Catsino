@@ -7,10 +7,7 @@ import com.catsino.tools.Player;
 
 public class Catsino {
 
-  // Importan Stuff
-  public static Scanner input = new Scanner(System.in);
-
-  public static void menu(Player player) {
+  public static void menu(Player player, Scanner scanner) {
 
     try {
       Startup.startupMain();
@@ -30,11 +27,11 @@ public class Catsino {
       System.out.println("[5] Exit");
       System.out.print("What is your choice: ");
 
-      String userInput = input.nextLine();
+      String userInput = scanner.nextLine();
 
       if (userInput.equals("1")) {
         System.out.print(ANSI_CLEAR);
-        NumberGuess.numberGuess(player);
+        NumberGuess.numberGuess(player, scanner);
       }
 
       else if (userInput.equals("2")) {
@@ -42,7 +39,7 @@ public class Catsino {
         System.out.print(ANSI_CLEAR);
         System.out.print("Save Game? (y/n) \n> ");
 
-        userInput = input.nextLine().trim().toLowerCase();
+        userInput = scanner.nextLine().trim().toLowerCase();
 
         if (userInput.equals("y")) {
           SaveSystem.save(player.getBalance());
@@ -60,7 +57,7 @@ public class Catsino {
         System.out.print(ANSI_CLEAR);
         System.out.print("Load Game (y/n) \n> ");
 
-        userInput = input.next().trim().toLowerCase();
+        userInput = scanner.nextLine().trim().toLowerCase();
 
         if (userInput.equals("y")) {
           double loaded = SaveSystem.load();
@@ -81,7 +78,7 @@ public class Catsino {
         System.out.print(ANSI_CLEAR);
         System.out.println("Tutorial coming soon...");
 
-        input.nextLine();
+        scanner.nextLine();
         System.out.print(ANSI_CLEAR);
       }
 
@@ -92,7 +89,7 @@ public class Catsino {
       }
       else if (userInput.equals("catmode")) {
         // Cheat mode
-        CatMode.catMode(player);
+        CatMode.catMode(player, scanner);
       }
 
       else {
