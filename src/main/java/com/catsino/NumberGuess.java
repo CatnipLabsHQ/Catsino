@@ -12,7 +12,7 @@ public class NumberGuess {
     
     // Variables
     double bet;
-    int guess;
+    int guess = 0;
     int randomNumber = new Random().nextInt(3) + 1;
 
 
@@ -22,11 +22,15 @@ public class NumberGuess {
     System.out.println(ANSI_GREEN + "This is your balance: " + player.getBalance() + "$" + ANSI_RESET);
     System.out.print("Please enter your bet: ");
 
-    try {
-      bet = Double.parseDouble(scanner.nextLine());
-    } catch (NumberFormatException e) {
-        System.out.print(ANSI_CLEAR);
-        return;
+    while(true) {
+        try {
+            bet = Double.parseDouble(scanner.nextLine());
+            break;
+        } catch (NumberFormatException e) {
+            System.out.print(ANSI_CLEAR);
+            System.out.println("This is not a Number");
+            System.out.print("Please enter your bet: ");
+        }
     }
     
     if(!player.withdraw(bet)) {
@@ -34,15 +38,25 @@ public class NumberGuess {
       return;
     }
     System.out.println("you can choice a number between 1 and 3");
-    System.out.print("Please enter your guess: ");
-    try {
-        guess = Integer.parseInt(scanner.nextLine());
-    } catch (NumberFormatException e) {
-        System.out.print(ANSI_CLEAR);
-        return;
-    }
+    while(true) {
+        System.out.print("Please enter your guess: ");
+        try {
+            guess = Integer.parseInt(scanner.nextLine());
 
-    if (guess == randomNumber) {
+            if (guess < 1 || guess > 3) {
+                System.out.println(ANSI_CLEAR);
+                System.out.println("Number between 1 and 3");
+            }
+            else {
+                break;
+            }
+        } catch (NumberFormatException e) {
+            System.out.print(ANSI_CLEAR);
+            System.out.println("This is not a number");
+        }
+
+    }
+           if (guess == randomNumber) {
       double winnings = bet + (0.5 * bet);
       player.deposit(winnings);
       System.out.print(ANSI_CLEAR);

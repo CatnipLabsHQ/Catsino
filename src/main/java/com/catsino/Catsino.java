@@ -82,7 +82,7 @@ public class Catsino {
         System.out.print(ANSI_CLEAR);
       }
 
-      else if (userInput.equals("5") || userInput.equals("exit")) {
+      else if (userInput.equals("5") || userInput.equals("exit") || userInput.equals("quit") || userInput.equals("q")) {
         System.out.print(ANSI_CLEAR);
         System.out.println(ANSI_BLUE + "Thanks for playing!" + ANSI_RESET);
         System.exit(0);
