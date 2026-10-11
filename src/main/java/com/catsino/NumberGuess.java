@@ -22,6 +22,7 @@ public class NumberGuess {
     System.out.println(ANSI_GREEN + "This is your balance: " + player.getBalance() + "$" + ANSI_RESET);
     System.out.print("Please enter your bet: ");
 
+    // Player Bet input
     while(true) {
         try {
             bet = Double.parseDouble(scanner.nextLine());
@@ -33,11 +34,13 @@ public class NumberGuess {
         }
     }
     
+    // checks if bet is bigger than Money
     if(!player.withdraw(bet)) {
       System.out.println("Not enough Money");
       return;
     }
     System.out.println("you can choice a number between 1 and 3");
+
     while(true) {
         System.out.print("Please enter your guess: ");
         try {
