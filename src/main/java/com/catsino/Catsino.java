@@ -31,74 +31,72 @@ public class Catsino {
 
             String userInput = scanner.nextLine();
 
-            if (userInput.equals("1")) {
-                System.out.print(ANSI_CLEAR);
-                NumberGuess.numberGuess(player, scanner);
+            switch (userInput.toLowerCase()) {
+                case "1", "play"                -> {clearScreen(); NumberGuess.numberGuess(player, scanner);}
+                case "2", "save"                -> saveGame(player, scanner);
+                case "3", "load"                -> loadGame(player, scanner);
+                case "4", "tutorial"            -> tutorial(scanner);
+                case "5", "quit", "exit", "q"   -> {clearScreen(); System.out.println(ANSI_BLUE + "Thanks for playing!" + ANSI_RESET); System.exit(0);}
+                case "6", "cf", "coinflip"      -> CoinFlip.coinFlip(player, scanner);
+                case "catmode"                  -> CatMode.catMode(player, scanner);
+
+                default -> clearScreen();
             }
+        }
+    }
 
-            else if (userInput.equals("2")) {
-                // Save System
-                System.out.print(ANSI_CLEAR);
-                System.out.print("Save Game? (y/n) \n> ");
+    private static void clearScreen() {
+        System.out.print(ANSI_CLEAR);
+    }
 
-                userInput = scanner.nextLine().trim().toLowerCase();
+    private static void saveGame(Player player, Scanner scanner){
+        // Save System
+        System.out.print(ANSI_CLEAR);
+        System.out.print("Save Game? (y/n) \n> ");
 
-                if (userInput.equals("y")) {
-                    SaveSystem.save(player.getBalance());
-                    System.out.print(ANSI_CLEAR);
-                    System.out.println(ANSI_GREEN + "Game Save" + ANSI_RESET);
-                } 
-                else {
-                    System.out.print(ANSI_CLEAR);
-                    System.out.println(ANSI_RED + "Save Canceled" + ANSI_RESET);
-                }
+        String answer = scanner.nextLine().trim().toLowerCase();
+
+        if (answer.equals("y")) {
+            SaveSystem.save(player.getBalance());
+            System.out.print(ANSI_CLEAR);
+            System.out.println(ANSI_GREEN + "Game Save" + ANSI_RESET);
+        } 
+        else {
+            System.out.print(ANSI_CLEAR);
+            System.out.println(ANSI_RED + "Save Canceled" + ANSI_RESET);
+        }
+    }
+
+    private static void loadGame(Player player, Scanner scanner) {
+
+        // Load System
+        System.out.print(ANSI_CLEAR);
+        System.out.print("Load Game (y/n) \n> ");
+
+        String answer = scanner.nextLine().trim().toLowerCase();
+
+        if (answer.equals("y")) {
+            double loaded = SaveSystem.load();
+            if (!player.restore(loaded)) {
+                System.out.println(ANSI_RED + "Save-File Error" + ANSI_RESET);
             }
+            System.out.print(ANSI_CLEAR);
+            System.out.println(ANSI_GREEN + "Load Game" + ANSI_RESET);
+        } 
+        else {
+            System.out.print(ANSI_CLEAR);
+            System.out.println(ANSI_GREEN + "Load Canceled" + ANSI_RESET);
+        }
 
-            else if (userInput.equals("3")) {
-                // Load System
-                System.out.print(ANSI_CLEAR);
-                System.out.print("Load Game (y/n) \n> ");
+    }
 
-                userInput = scanner.nextLine().trim().toLowerCase();
-
-                if (userInput.equals("y")) {
-                    double loaded = SaveSystem.load();
-                    if (!player.restore(loaded)) {
-                        System.out.println(ANSI_RED + "Save-File Error" + ANSI_RESET);
-                    }
-                    System.out.print(ANSI_CLEAR);
-                    System.out.println(ANSI_GREEN + "Load Game" + ANSI_RESET);
-                }
-                else {
-                    System.out.print(ANSI_CLEAR);
-                    System.out.println(ANSI_GREEN + "Load Canceled" + ANSI_RESET);
-                }
-            }
-
-            else if (userInput.equals("4")) {
+    private static void tutorial(Scanner scanner) {
             // Tutorial
             System.out.print(ANSI_CLEAR);
             System.out.println("Tutorial coming soon...");
 
             scanner.nextLine();
             System.out.print(ANSI_CLEAR);
-            }
 
-            else if (userInput.equals("5") || userInput.equals("exit") || userInput.equals("quit") || userInput.equals("q")) {
-            System.out.print(ANSI_CLEAR);
-            System.out.println(ANSI_BLUE + "Thanks for playing!" + ANSI_RESET);
-            System.exit(0);
-            }
-            else if (userInput.equals("cf") || userInput.equals("coinflip") || userInput.equals("6")) {
-                CoinFlip.coinFlip(player, scanner);
-            }
-            else if (userInput.equals("catmode")) {
-                // Cheat mode
-                CatMode.catMode(player, scanner);
-            }
-            else {
-                System.out.print(ANSI_CLEAR);
-            }
-        }
     }
 }
