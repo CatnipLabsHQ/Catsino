@@ -6,7 +6,7 @@
 
   <modelVersion>4.0.0</modelVersion>
   
-  <groupId>com.catsino</groupId>
+  <groupId>me.kater</groupId>
   <artifactId>Catsino</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
@@ -51,7 +51,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.6.3</version>
         <configuration>
-          <mainClass>com.catsino.Main</mainClass>
+          <mainClass>me.kater.catsino.Main</mainClass>
         </configuration>
       </plugin>
       
@@ -63,7 +63,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.catsino.Main</mainClass>
+              <mainClass>me.kater.catsino.Main</mainClass>
             </manifest>
           </archive>
         </configuration>

@@ -1,4 +1,4 @@
-package com.catsino;
+package me.kater.catsino;
 
 import javax.sound.sampled.*;
 
@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static com.catsino.tools.GameData.Ansi.*;
+import static me.kater.catsino.tools.GameData.Ansi.*;
 
 public class Startup {
 

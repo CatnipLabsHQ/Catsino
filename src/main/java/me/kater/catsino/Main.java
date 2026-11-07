@@ -1,8 +1,8 @@
-package com.catsino;
+package me.kater.catsino;
 
 import java.util.Scanner;
 
-import com.catsino.tools.Player;
+import me.kater.catsino.tools.Player;
 
 public class Main {
 

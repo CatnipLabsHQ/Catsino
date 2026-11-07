@@ -1,4 +1,4 @@
-package com.catsino.tools;
+package me.kater.catsino.tools;
 
 public class GameData {
 

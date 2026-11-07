@@ -1,4 +1,4 @@
-package com.catsino;
+package me.kater.catsino;
 
 import java.io.BufferedWriter;
 import java.io.BufferedReader;

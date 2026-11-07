@@ -1,10 +1,10 @@
-package com.catsino;
+package me.kater.catsino;
 
 import java.util.Random;
 import java.util.Scanner;
 
-import static com.catsino.tools.GameData.Ansi.*;
-import com.catsino.tools.Player;
+import static me.kater.catsino.tools.GameData.Ansi.*;
+import me.kater.catsino.tools.Player;
 
 public class NumberGuess {
 
